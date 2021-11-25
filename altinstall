@@ -1,0 +1,36 @@
+#!/bin/bash
+export IFS=$'\n'
+CMDNAME=`basename $0`
+
+usage_exit() {
+        echo "Usage: ${CMDNAME} -u [UDID] -a [AppleID account] -p [AppleID password] -i [ipaPath.ipa]" 1>&2
+        exit 1
+}
+
+UDID=
+account=
+password=
+ipa_path=
+source ~/.config/altserver/config
+
+while getopts u:a:p:i:h OPT
+do
+    case $OPT in
+        u)  UDID=$OPTARG
+            ;;
+        a)  account=$OPTARG
+            ;;
+        p)  password=$OPTARG
+            ;;
+        i)  ipa_path=$OPTARG
+            ;;
+        h)  usage_exit
+            ;;
+        \?) usage_exit
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+AltServer -u ${UDID} -a ${account} -p ${password} ${ipa_path}
+
