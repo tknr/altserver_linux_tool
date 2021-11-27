@@ -3,7 +3,7 @@ export IFS=$'\n'
 CMDNAME=`basename $0`
 
 usage_exit() {
-        echo "Usage: ${CMDNAME} -u [UDID] -a [AppleID account] -p [AppleID password] -i [ipaPath.ipa]" 1>&2
+        echo "Usage: ${CMDNAME} [-u UDID] [-a AppleID account] [-p AppleID password] [-i ipaPath.ipa]" 1>&2
         exit 1
 }
 
